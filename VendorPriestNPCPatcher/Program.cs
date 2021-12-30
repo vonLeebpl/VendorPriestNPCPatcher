@@ -43,6 +43,8 @@ namespace VendorPriestNPCPatcher
             var VPriestFormIDs = VPriest.Npcs.Select(x => x.FormKey).ToList();
             var winningOverrides = state.LoadOrder.PriorityOrder.WinningOverrides<INpcGetter>().Where(x => VPriestFormIDs.Contains(x.FormKey)).ToList();
 
+            int changed = 0;
+
             foreach (var npc in VPriest.Npcs)
             {
                 if (new List<uint>() { 7, 14 }.Contains(npc.FormKey.ID)) continue; // ignore player record
@@ -54,8 +56,11 @@ namespace VendorPriestNPCPatcher
                     if (!patchNpc.Factions.Select(x => new KeyValuePair<FormKey, int>(x.Faction.FormKey, x.Rank)).Contains(new KeyValuePair<FormKey, int>(fac.Faction.FormKey, fac.Rank)))
                     {
                         patchNpc.Factions.Add(fac.DeepCopy());
+                        changed++;
                     }
             }
+
+            System.Console.WriteLine("VendorPriestPatcher patched " + changed + " records.");
 
             if (state.PatchMod.ModKey.Name == PVendorPatchName)
             {
