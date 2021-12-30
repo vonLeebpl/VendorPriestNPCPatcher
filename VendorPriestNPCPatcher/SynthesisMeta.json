@@ -1,0 +1,10 @@
+{
+  "Nickname": "VenndorPriestNPCPatcher",
+  "Visibility": "Visible",
+  "OneLineDescription": "Forwards Priest Vendor fraction to NPC fractions list",
+  "LongDescription": "- Forwards priest vendor fractions to winnig NPC override record. -",
+  "PreferredAutoVersioning": "Default",
+  "RequiredMods": [
+    "Priest Vendors SE.esp"
+  ]
+}
